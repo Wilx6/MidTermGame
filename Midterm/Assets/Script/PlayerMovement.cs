@@ -4,42 +4,37 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector2 direction;
-   
-    // Start is called before the first frame update
+    //  private Vector2 direction;
+
+    private Rigidbody2D rb;
+    public float jump;
+    public float speed;
+    private float Move;
+
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody2D>();
 
-        if (Input.GetKeyDown(KeyCode.A)) //Moves to the left
-        {
-            direction = Vector2.left;
-            transform.position = new Vector2(transform.position.x + direction.x, transform.position.y);
-        }
+        Move = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.D)) //Moves to the right
-        {
-            direction = Vector2.right;
-            transform.position = new Vector2(transform.position.x + direction.x, transform.position.y);
-        }
-       
-        if (Input.GetKeyDown(KeyCode.S)) //Moves down
-        {
-            direction = Vector2.down;
-            transform.position = new Vector2(transform.position.x, transform.position.y + direction.y);
-        }
+        rb.velocity = new Vector2(Move * speed, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.W)) //Moves up
+
+
+        if (Input.GetKeyDown("space"))
         {
-            direction = Vector2.up;
-            transform.position = new Vector2(transform.position.x, transform.position.y + direction.y);
+            rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
+        
+
+
+        
+
     }
 
 }
