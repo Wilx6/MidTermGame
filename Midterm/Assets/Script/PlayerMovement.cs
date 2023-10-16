@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    
     }
 
     // Update is called once per frame
@@ -30,11 +33,30 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
-        
 
-
-        
+       
 
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Death")
+        {
+            SceneManager.LoadScene(2);
+        }
+        else if (other.tag == "CaveEnter")
+        {
+            SceneManager.LoadScene(3);
+        }
+        else if (other.tag == "CaveExit")
+        {
+            SceneManager.LoadScene(4);
+        }
+        else if (other.tag == "Win")
+        {
+            SceneManager.LoadScene(5);
+        }
+    }
+
 
 }
