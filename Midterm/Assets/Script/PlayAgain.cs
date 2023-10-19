@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Restart : MonoBehaviour
+public class PlayAgain : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,9 +16,8 @@ public class Restart : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene(1);
-
+            SceneManager.LoadScene(0);
+            
         }
-
     }
 }
