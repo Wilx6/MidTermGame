@@ -14,15 +14,17 @@ public class PlayerMovement : MonoBehaviour
     public float jump;
     public float speed;
     private float Move;
-   
+    bool playerJump;
+    
 
     public static int playerCoin;
     public Text totalCoin;
     
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-    
+        
     }
 
     // Update is called once per frame
@@ -33,22 +35,31 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(Move * speed, rb.velocity.y);
 
-
-
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && playerJump == true)
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
 
-      
-            totalCoin.text = playerCoin.ToString();
+        totalCoin.text = playerCoin.ToString();
           
     }
 
     
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "groundCheck")
+        {
+            playerJump = false;
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.tag == "groundCheck")
+        {
+            playerJump = true;
+        }
+
         if (other.tag == "Death")
         {
             SceneManager.LoadScene(2);
