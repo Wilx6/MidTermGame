@@ -14,7 +14,7 @@ public class PlayAgain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetMouseButtonDown(0))
         {
             SceneManager.LoadScene(0);
             

@@ -8,7 +8,6 @@ TagManager:
   - CaveEnter
   - CaveExit
   - CollectCoin
-  - groundCheck
   layers:
   - Default
   - TransparentFX
